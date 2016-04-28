@@ -1,0 +1,20 @@
+project_name: codequality  # api.tngnt.co/codequality/{branch}
+build_commands: 
+  - mvn package
+test_commands: 
+  - mvn cobertura:cobertura
+pre_service_up_commands: 
+  - mvn package
+post_service_up_commands: []  
+with_codeclimate: no
+# cobertura_xml_report_file: target/site/cobertura/coverage.xml
+# service optionals:
+consul_tags: []
+with_kong: yes
+kong_simple_plugins:
+  - cors 
+  - key-auth
+kong_configurable_plugins:
+  - name: http-log
+    config: 
+      http_endpoint: "http://logstash.service.consul:8021/{{project_subdomain}}"
