@@ -1,7 +1,6 @@
 package za.co.tangent.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -11,7 +10,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -29,7 +27,6 @@ import de.flapdoodle.embed.mongo.config.MongodConfigBuilder;
 import de.flapdoodle.embed.mongo.config.Net;
 import de.flapdoodle.embed.mongo.config.RuntimeConfigBuilder;
 import de.flapdoodle.embed.mongo.distribution.Version;
-import de.flapdoodle.embed.mongo.tests.MongodForTestsFactory;
 import de.flapdoodle.embed.process.config.IRuntimeConfig;
 import de.flapdoodle.embed.process.extract.UserTempNaming;
 import de.flapdoodle.embed.process.runtime.Network;
