@@ -20,8 +20,7 @@ import org.springframework.stereotype.Service;
 
 import com.mongodb.MongoClient;
 
-import za.co.tangent.domain.Helper;
-import za.co.tangent.domain.Helper.Counter;
+import za.co.tangent.domain.Counter;
 
 @Service
 public class MongoDBCounterService {
@@ -37,16 +36,18 @@ public class MongoDBCounterService {
 	 }
 	   
 	public int getNextSequence(String collectionName) {
-		MongoOperations mongoOperations = null;
-		//Query query = new Query();
-		//query.addCriteria(Criteria.where("_id").is(collectionName));
-		//List<Counter> result = mongoOperations.find(query, Counter.class);
-		//List<Counter> result = mongoOperations.find(Query.query(Criteria.where("_id").is("file")), Counter.class);
-		/*if (result.isEmpty()){
-			mongoOperations.insert("{ '_id' : collectionName, 'seq' : 0 }");
-		}*/
 		try {
-			mongoOperations = mongoOperations();
+			MongoOperations mongoOperations = mongoOperations();
+			Query query = new Query();
+			query.addCriteria(Criteria.where("_id").is(collectionName));
+			List<Counter> result = mongoOperations.find(query, Counter.class);
+			if (result.isEmpty()){
+				Counter count = new Counter();
+				count.setId(collectionName);
+				count.setSeq(1);
+				mongoOperations.insert(count);
+			}
+			
 			Query q = query(where("_id").is(collectionName));
 			Update u = new Update().inc("seq", 1);
 			FindAndModifyOptions o = options().returnNew(true);
