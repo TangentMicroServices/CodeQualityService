@@ -7,10 +7,12 @@ pre_service_up_commands:
   - mvn package
 post_service_up_commands: []  
 with_codeclimate: no
-# cobertura_xml_report_file: target/site/cobertura/coverage.xml
+cobertura_xml_report_file: target/site/cobertura/coverage.xml
 # service optionals:
 consul_tags: []
-with_kong: yes
+
+# no kong for now
+with_kong: no
 kong_simple_plugins:
   - cors 
   - key-auth
